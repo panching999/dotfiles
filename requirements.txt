@@ -1,0 +1,13 @@
+
+qtile
+neovim
+rofi
+picom
+nm-applet
+nitrogen
+flameshot
+gnome-screenshot
+pulseaudio
+pavucontrol
+reflector
+
