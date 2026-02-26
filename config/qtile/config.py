@@ -110,7 +110,11 @@ keys = [
 
     #screenshot
 
-    Key([mod, "shift"], "s", lazy.spawn("gscreenshot"), desc="screenshots"),
+
+   Key([mod, "shift"], "s", lazy.spawn("gscreenshot"), desc="screenshots"),
+
+   Key([mod, "shift"], "n", lazy.spawn("gammastep -O 2500"), desc="gammastep"),
+
 
 
 
@@ -183,6 +187,8 @@ colors = [["#1d1f21", "#1d1f21"],#0
           ["#81a2be", "#81a2be"],#10
           ["#b294bb", "#b294bb"]]#11
 
+nord_colors = ["#2e3440","#3b4252","#434c5e","#4c566a"]
+snow_storm = ["#d8dee9","#e5e9f0","#eceff4"]
 #default widget config
 widget_defaults = dict(
     font="Ubuntu Bold",
@@ -272,27 +278,31 @@ def init_widgets_list():
 
                 widget.DF(
                     visible_on_warn=False,
-                    format = '[: {p} {uf}{m}|{s}{m}]',
+                    format = '[{p} {uf}{m}|{s}{m}]',
                 ),
 
 
                 widget.CPU(
-                    format = "[: {load_percent}%]",
+                        format = "[C: {load_percent}%]",
                 ),
 
                 widget.ThermalSensor(
-                    fmt = "[: {}]",
+                    fmt = "[{}]",
                     foreground = colors[3]
 
                 ),
 
                 widget.Memory(
                     measure_mem='M',
-                    format = "[:{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}]",
+                    format = "[{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}]",
+                ),
+
+                widget.Battery(
+                        format = "[B: {percent:2.0%}]"
                 ),
 
                 widget.Clock(
-                    format = "[: %H:%M]"   ,
+                    format = "[%H:%M]"   ,
                 ),
 
             ]
@@ -314,8 +324,8 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=1, background = colors[0])),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=1, background = colors[0]))
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=1, background = colors[0], margin=0, border_width=0)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=1, background = colors[0], margin=0, border_width=0))
 ]
 screens = init_screens()
 
